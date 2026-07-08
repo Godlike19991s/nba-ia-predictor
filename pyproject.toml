@@ -1,0 +1,47 @@
+[build-system]
+requires = ["setuptools>=75.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nba-ia-predictor"
+version = "0.1.0"
+description = "Professional NBA prediction platform using Artificial Intelligence, Machine Learning and Advanced Statistics."
+readme = "README.md"
+requires-python = ">=3.13"
+
+authors = [
+    { name = "Jose Manuel Nazarit Hidalgo" }
+]
+
+license = { text = "MIT" }
+
+keywords = [
+    "nba",
+    "machine-learning",
+    "artificial-intelligence",
+    "statistics",
+    "sports-analytics",
+    "prediction"
+]
+
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent"
+]
+
+dependencies = []
+
+[tool.black]
+line-length = 88
+target-version = ["py313"]
+
+[tool.ruff]
+line-length = 88
+target-version = "py313"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.mypy]
+python_version = "3.13"
+ignore_missing_imports = true
