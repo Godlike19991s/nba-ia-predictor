@@ -195,8 +195,8 @@ class TeamGameStats(Base):
         nullable=False,
     )
 
-
 class TeamGameFeatures(Base):
+    """Características calculadas de un equipo por partido."""
 
     __tablename__ = "team_game_features"
 
@@ -225,4 +225,34 @@ class TeamGameFeatures(Base):
         Boolean,
         nullable=False,
         default=False,
+    )
+
+    wins_last_5: Mapped[int | None] = mapped_column(
+        Integer,
+        nullable=True,
+    )
+
+    losses_last_5: Mapped[int | None] = mapped_column(
+        Integer,
+        nullable=True,
+    )
+
+    win_pct_last_5: Mapped[float | None] = mapped_column(
+        Float,
+        nullable=True,
+    )
+
+    avg_points_last_5: Mapped[float | None] = mapped_column(
+        Float,
+        nullable=True,
+    )
+
+    avg_points_allowed_last_5: Mapped[float | None] = mapped_column(
+        Float,
+        nullable=True,
+    )
+
+    recent_point_diff: Mapped[float | None] = mapped_column(
+        Float,
+        nullable=True,
     )
