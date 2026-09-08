@@ -197,7 +197,6 @@ class TeamGameStats(Base):
 
 
 class TeamGameFeatures(Base):
-    
 
     __tablename__ = "team_game_features"
 
@@ -220,4 +219,10 @@ class TeamGameFeatures(Base):
     rest_days: Mapped[int | None] = mapped_column(
         Integer,
         nullable=True,
+    )
+
+    is_back_to_back: Mapped[bool] = mapped_column(
+        Boolean,
+        nullable=False,
+        default=False,
     )

@@ -4,9 +4,9 @@ from app.database.connection import SessionLocal
 
 
 def calculate_rest_days() -> None:
-    """Calcula y guarda los días de descanso de cada equipo."""
+    """Calcula y guarda los días de descanso y back-to-back."""
 
-    print("Calculando rest_days...")
+    print("Calculando rest_days y back_to_back...")
 
     session = SessionLocal()
 
@@ -38,22 +38,27 @@ def calculate_rest_days() -> None:
 
             if row.previous_game_date is None:
                 rest_days = None
+                is_back_to_back = False
             else:
                 rest_days = (
                     row.game_date - row.previous_game_date
                 ).days
+
+                is_back_to_back = rest_days == 1
 
             insert_query = text(
                 """
                 INSERT INTO team_game_features (
                     game_id,
                     team_id,
-                    rest_days
+                    rest_days,
+                    is_back_to_back
                 )
                 VALUES (
                     :game_id,
                     :team_id,
-                    :rest_days
+                    :rest_days,
+                    :is_back_to_back
                 );
                 """
             )
@@ -64,6 +69,7 @@ def calculate_rest_days() -> None:
                     "game_id": row.game_id,
                     "team_id": row.team_id,
                     "rest_days": rest_days,
+                    "is_back_to_back": is_back_to_back,
                 },
             )
 
