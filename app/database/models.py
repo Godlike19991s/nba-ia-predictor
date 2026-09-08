@@ -316,3 +316,23 @@ class TeamGameFeatures(Base):
         Float,
         nullable=True,
     )
+
+    possessions: Mapped[float | None] = mapped_column(
+        Float,
+        nullable=True,
+    )
+
+    offensive_rating: Mapped[float | None] = mapped_column(
+        Float,
+        nullable=True,
+    )
+
+    defensive_rating: Mapped[float | None] = mapped_column(
+        Float,
+        nullable=True,
+    )
+
+    net_rating: Mapped[float | None] = mapped_column(
+        Float,
+        nullable=True,
+    )
