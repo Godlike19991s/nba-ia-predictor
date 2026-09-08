@@ -336,3 +336,49 @@ class TeamGameFeatures(Base):
         Float,
         nullable=True,
     )
+
+    avg_offensive_rating_last_5: Mapped[float | None] = mapped_column(
+    Float,
+    nullable=True,
+    )
+
+    avg_defensive_rating_last_5: Mapped[float | None] = mapped_column(
+        Float,
+        nullable=True,
+    )
+
+    avg_net_rating_last_5: Mapped[float | None] = mapped_column(
+        Float,
+        nullable=True,
+    )
+
+class GameFeatures(Base):
+
+    __tablename__ = "game_features"
+
+    id: Mapped[int] = mapped_column(
+        Integer,
+        primary_key=True,
+        autoincrement=True,
+    )
+
+    game_id: Mapped[str] = mapped_column(
+        String(20),
+        nullable=False,
+        unique=True,
+    )
+
+    offensive_rating_diff: Mapped[float | None] = mapped_column(
+        Float,
+        nullable=True,
+    )
+
+    defensive_rating_diff: Mapped[float | None] = mapped_column(
+        Float,
+        nullable=True,
+    )
+
+    net_rating_diff: Mapped[float | None] = mapped_column(
+        Float,
+        nullable=True,
+    )
