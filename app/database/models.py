@@ -256,3 +256,63 @@ class TeamGameFeatures(Base):
         Float,
         nullable=True,
     )
+
+    home_wins_last_5: Mapped[int | None] = mapped_column(
+        Integer,
+        nullable=True,
+    )
+
+    home_losses_last_5: Mapped[int | None] = mapped_column(
+        Integer,
+        nullable=True,
+    )
+
+    home_win_pct_last_5: Mapped[float | None] = mapped_column(
+        Float,
+        nullable=True,
+    )
+
+    home_avg_points_last_5: Mapped[float | None] = mapped_column(
+        Float,
+        nullable=True,
+    )
+
+    home_avg_points_allowed_last_5: Mapped[float | None] = mapped_column(
+        Float,
+        nullable=True,
+    )
+
+    home_recent_point_diff: Mapped[float | None] = mapped_column(
+        Float,
+        nullable=True,
+    )
+
+    away_wins_last_5: Mapped[int | None] = mapped_column(
+        Integer,
+        nullable=True,
+    )
+
+    away_losses_last_5: Mapped[int | None] = mapped_column(
+        Integer,
+        nullable=True,
+    )
+
+    away_win_pct_last_5: Mapped[float | None] = mapped_column(
+        Float,
+        nullable=True,
+    )
+
+    away_avg_points_last_5: Mapped[float | None] = mapped_column(
+        Float,
+        nullable=True,
+    )
+
+    away_avg_points_allowed_last_5: Mapped[float | None] = mapped_column(
+        Float,
+        nullable=True,
+    )
+
+    away_recent_point_diff: Mapped[float | None] = mapped_column(
+        Float,
+        nullable=True,
+    )
