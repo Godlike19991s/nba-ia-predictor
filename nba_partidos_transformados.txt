@@ -1,0 +1,30 @@
+PARTIDOS NBA TRANSFORMADOS
+================================================================================
+
+Temporada: 2024-25
+Registros originales: 2802
+Partidos transformados: 1401
+
+================================================================================
+
+   GAME_ID  GAME_DATE  HOME_TEAM_ID HOME_TEAM_ABBREVIATION       HOME_TEAM_NAME  AWAY_TEAM_ID AWAY_TEAM_ABBREVIATION         AWAY_TEAM_NAME  HOME_POINTS  AWAY_POINTS
+0012400001 2024-10-04    1610612743                    DEN       Denver Nuggets    1610612738                    BOS         Boston Celtics          103          107
+0012400002 2024-10-04    1610612762                    UTA            Utah Jazz         15020                    NZB   New Zealand Breakers          116           87
+0012400003 2024-10-04    1610612747                    LAL   Los Angeles Lakers    1610612750                    MIN Minnesota Timberwolves          107          124
+0012400004 2024-10-05    1610612746                    LAC          LA Clippers    1610612744                    GSW  Golden State Warriors           90           91
+0012400005 2024-10-06    1610612738                    BOS       Boston Celtics    1610612743                    DEN         Denver Nuggets          130          104
+0012400006 2024-10-06    1610612766                    CHA    Charlotte Hornets    1610612752                    NYK        New York Knicks          109          111
+0012400007 2024-10-06    1610612761                    TOR      Toronto Raptors    1610612764                    WAS     Washington Wizards          125           98
+0012400008 2024-10-06    1610612765                    DET      Detroit Pistons    1610612749                    MIL        Milwaukee Bucks          120           87
+0012400009 2024-10-06    1610612747                    LAL   Los Angeles Lakers    1610612756                    PHX           Phoenix Suns          114          118
+0012400010 2024-10-07    1610612740                    NOP New Orleans Pelicans    1610612753                    ORL          Orlando Magic          106          104
+0012400011 2024-10-07    1610612755                    PHI   Philadelphia 76ers         15020                    NZB   New Zealand Breakers          139           84
+0012400012 2024-10-07    1610612742                    DAL     Dallas Mavericks    1610612763                    MEM      Memphis Grizzlies          116          121
+0012400013 2024-10-07    1610612759                    SAS    San Antonio Spurs    1610612760                    OKC  Oklahoma City Thunder          107          112
+0012400014 2024-10-07    1610612762                    UTA            Utah Jazz    1610612745                    HOU        Houston Rockets          122          113
+0012400015 2024-10-08    1610612766                    CHA    Charlotte Hornets    1610612748                    MIA             Miami Heat          111          108
+0012400016 2024-10-08    1610612739                    CLE  Cleveland Cavaliers    1610612741                    CHI          Chicago Bulls          112          116
+0012400017 2024-10-08    1610612765                    DET      Detroit Pistons    1610612756                    PHX           Phoenix Suns           97          105
+0012400018 2024-10-08    1610612737                    ATL        Atlanta Hawks    1610612754                    IND         Indiana Pacers          131          130
+0012400019 2024-10-08    1610612746                    LAC          LA Clippers    1610612751                    BKN          Brooklyn Nets          115          106
+0012400020 2024-10-09    1610612752                    NYK      New York Knicks    1610612764                    WAS     Washington Wizards          117           94

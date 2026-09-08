@@ -1,0 +1,27 @@
+PARTIDOS A REVISAR
+======================================================================
+
+Temporada: 2024-25
+Partidos a revisar: 9
+
+======================================================================
+
+   GAME_ID  GAME_DATE             TEAM_NAME   MATCHUP SEASON_ID  PTS
+0022400633 2025-01-25        Indiana Pacers IND @ SAS     22024  136
+0022400633 2025-01-25     San Antonio Spurs IND @ SAS     22024   98
+0022400621 2025-01-23     San Antonio Spurs SAS @ IND     22024  140
+0022400621 2025-01-23        Indiana Pacers SAS @ IND     22024  110
+0062400001 2024-12-17       Milwaukee Bucks MIL @ OKC     62024   97
+0062400001 2024-12-17 Oklahoma City Thunder MIL @ OKC     62024   81
+0022401229 2024-12-14         Atlanta Hawks ATL @ MIL     22024  102
+0022401230 2024-12-14       Houston Rockets HOU @ OKC     22024   96
+0022401229 2024-12-14       Milwaukee Bucks ATL @ MIL     22024  110
+0022401230 2024-12-14 Oklahoma City Thunder HOU @ OKC     22024  111
+0022400147 2024-11-02    Washington Wizards MIA @ WAS     22024   98
+0022400147 2024-11-02            Miami Heat MIA @ WAS     22024  118
+0012400007 2024-10-06    Washington Wizards WAS @ TOR     12024   98
+0012400007 2024-10-06       Toronto Raptors WAS @ TOR     12024  125
+0012400005 2024-10-06        Denver Nuggets DEN @ BOS     12024  104
+0012400005 2024-10-06        Boston Celtics DEN @ BOS     12024  130
+0012400001 2024-10-04        Boston Celtics BOS @ DEN     12024  107
+0012400001 2024-10-04        Denver Nuggets BOS @ DEN     12024  103

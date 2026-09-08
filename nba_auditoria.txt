@@ -1,0 +1,18 @@
+AUDITORÍA DE DATOS NBA
+============================================================
+
+Temporada analizada: 2024-25
+Registros originales: 2802
+GAME_ID únicos: 1401
+
+GAME_ID con exactamente 2 registros: 1401
+GAME_ID anormales: 0
+
+GAME_ID ANORMALES
+============================================================
+
+No se encontraron GAME_ID con una cantidad anormal de registros.
+
+============================================================
+
+Partidos transformados: 1392
