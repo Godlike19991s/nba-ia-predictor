@@ -382,3 +382,23 @@ class GameFeatures(Base):
         Float,
         nullable=True,
     )
+
+    win_pct_diff: Mapped[float | None] = mapped_column(
+        Float,
+        nullable=True,
+    )
+
+    recent_point_diff_diff: Mapped[float | None] = mapped_column(
+        Float,
+        nullable=True,
+    )
+
+    rest_days_diff: Mapped[float | None] = mapped_column(
+        Float,
+        nullable=True,
+    )
+
+    back_to_back_diff: Mapped[float | None] = mapped_column(
+        Float,
+        nullable=True,
+    )

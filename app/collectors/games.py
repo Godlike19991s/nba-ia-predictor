@@ -1,8 +1,10 @@
+import sys
+
 import pandas as pd
 
 from nba_api.stats.endpoints import leaguegamefinder
 
-from transform_games import transform_games
+from app.collectors.transform_games import transform_games
 
 
 def get_games(season: str) -> pd.DataFrame:
@@ -14,33 +16,85 @@ def get_games(season: str) -> pd.DataFrame:
 
     games = finder.get_data_frames()[0]
 
-# GAME_ID es un identificador, no una cantidad numérica.
-# Lo conservamos como texto para evitar perder ceros iniciales.
-games["GAME_ID"] = games["GAME_ID"].astype(str).str.zfill(10)
+    # GAME_ID es un identificador, no una cantidad numérica.
+    # Lo conservamos como texto para evitar perder ceros iniciales.
+    games["GAME_ID"] = (
+        games["GAME_ID"]
+        .astype(str)
+        .str.zfill(10)
+    )
 
-return games
+    return games
 
 
-def main():
-    season = "2024-25"
+def main() -> None:
+    """Descarga y transforma una temporada NBA."""
 
-    print(f"Descargando datos de la temporada {season}...")
+    # ---------------------------------------------------------
+    # Validar argumentos
+    # ---------------------------------------------------------
+
+    if len(sys.argv) != 2:
+        print("Uso:")
+        print(
+            "python -m app.collectors.games 2025-26"
+        )
+        return
+
+    # ---------------------------------------------------------
+    # Configuración
+    # ---------------------------------------------------------
+
+    season = sys.argv[1]
+
+    # Por ahora trabajamos con temporada regular.
+    # Posteriormente podremos extender el recolector para:
+    # - Preseason
+    # - Playoffs
+    # - Play-In Tournament
+    season_type = "Regular Season"
+
+    print(
+        f"Descargando datos de la temporada {season}..."
+    )
+
+    print(
+        f"Tipo de temporada: {season_type}"
+    )
+
+    # ---------------------------------------------------------
+    # Descargar datos
+    # ---------------------------------------------------------
 
     games = get_games(season)
 
-    print(f"Registros originales: {len(games)}")
+    print(
+        f"Registros originales: {len(games)}"
+    )
+
+    # ---------------------------------------------------------
+    # Transformar datos
+    # ---------------------------------------------------------
 
     print("Transformando partidos...")
 
-    transformed_games = transform_games(games)
+    transformed_games = transform_games(
+        games,
+        season_type,
+    )
 
-    print(f"Partidos transformados: {len(transformed_games)}")
+    print(
+        f"Partidos transformados: "
+        f"{len(transformed_games)}"
+    )
 
     # ---------------------------------------------------------
-    # Guardamos los datos originales.
+    # Guardar datos RAW
     # ---------------------------------------------------------
 
-    raw_file = f"data/raw/games_{season}.csv"
+    raw_file = (
+        f"data/raw/games_{season}.csv"
+    )
 
     games.to_csv(
         raw_file,
@@ -48,13 +102,17 @@ def main():
         encoding="utf-8",
     )
 
-    print(f"Datos RAW guardados en: {raw_file}")
+    print(
+        f"Datos RAW guardados en: {raw_file}"
+    )
 
     # ---------------------------------------------------------
-    # Guardamos los datos transformados.
+    # Guardar datos procesados
     # ---------------------------------------------------------
 
-    processed_file = f"data/processed/games_{season}.csv"
+    processed_file = (
+        f"data/processed/games_{season}.csv"
+    )
 
     transformed_games.to_csv(
         processed_file,
@@ -62,7 +120,10 @@ def main():
         encoding="utf-8",
     )
 
-    print(f"Datos procesados guardados en: {processed_file}")
+    print(
+        f"Datos procesados guardados en: "
+        f"{processed_file}"
+    )
 
 
 if __name__ == "__main__":

@@ -1,7 +1,10 @@
 import pandas as pd
 
 
-def transform_games(games: pd.DataFrame) -> pd.DataFrame:
+def transform_games(
+    games: pd.DataFrame,
+    season_type: str,
+) -> pd.DataFrame:
     """
     Convierte los registros de equipos de la NBA en partidos.
 
@@ -10,6 +13,7 @@ def transform_games(games: pd.DataFrame) -> pd.DataFrame:
     - equipo visitante
     - puntos del local
     - puntos del visitante
+    - tipo de temporada
     """
 
     games = games.copy()
@@ -88,6 +92,7 @@ def transform_games(games: pd.DataFrame) -> pd.DataFrame:
             {
                 "GAME_ID": game_id,
                 "GAME_DATE": home_team["GAME_DATE"],
+                "SEASON_TYPE": season_type,
                 "HOME_TEAM_ID": home_team["TEAM_ID"],
                 "HOME_TEAM_ABBREVIATION": home_team[
                     "TEAM_ABBREVIATION"

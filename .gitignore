@@ -43,3 +43,16 @@ build/
 # Coverage
 .coverage
 htmlcov/
+# ==========================================
+# Machine Learning
+# ==========================================
+
+# CatBoost generated files
+catboost_info/
+
+# Trained models
+data/models/
+models/
+
+# ML metrics generated during training
+data/metrics/

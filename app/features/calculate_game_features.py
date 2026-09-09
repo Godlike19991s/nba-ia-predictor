@@ -4,7 +4,12 @@ from app.database.connection import SessionLocal
 
 
 def calculate_game_features() -> None:
-    """Calcula las características comparativas de cada partido."""
+    """
+    Calcula las características comparativas de cada partido.
+
+    Las características se calculan utilizando únicamente
+    información disponible antes del partido.
+    """
 
     print("Calculando características de los partidos...")
 
@@ -35,7 +40,19 @@ def calculate_game_features() -> None:
                     AS home_avg_net_rating_last_5,
 
                 away.avg_net_rating_last_5
-                    AS away_avg_net_rating_last_5
+                    AS away_avg_net_rating_last_5,
+
+                home.rest_days
+                    AS home_rest_days,
+
+                away.rest_days
+                    AS away_rest_days,
+
+                home.is_back_to_back
+                    AS home_is_back_to_back,
+
+                away.is_back_to_back
+                    AS away_is_back_to_back
 
             FROM games g
 
@@ -58,12 +75,15 @@ def calculate_game_features() -> None:
         print(f"Registros analizados: {len(results)}")
 
         inserted = 0
+        updated = 0
         skipped = 0
 
         for row in results:
 
-            # No podemos calcular diferencias si alguno de los
-            # equipos todavía no tiene suficientes partidos previos.
+            # --------------------------------------------------
+            # Validar características de eficiencia
+            # --------------------------------------------------
+
             if (
                 row.home_avg_offensive_rating_last_5 is None
                 or row.away_avg_offensive_rating_last_5 is None
@@ -74,6 +94,10 @@ def calculate_game_features() -> None:
             ):
                 skipped += 1
                 continue
+
+            # --------------------------------------------------
+            # Diferencias de eficiencia
+            # --------------------------------------------------
 
             offensive_rating_diff = (
                 row.home_avg_offensive_rating_last_5
@@ -90,42 +114,113 @@ def calculate_game_features() -> None:
                 - row.away_avg_net_rating_last_5
             )
 
+            # --------------------------------------------------
+            # Características de descanso
+            # --------------------------------------------------
+
+            home_rest_days = row.home_rest_days
+            away_rest_days = row.away_rest_days
+
+            if (
+                home_rest_days is not None
+                and away_rest_days is not None
+            ):
+                rest_days_diff = (
+                    home_rest_days
+                    - away_rest_days
+                )
+            else:
+                rest_days_diff = None
+
+            home_is_back_to_back = (
+                row.home_is_back_to_back
+            )
+
+            away_is_back_to_back = (
+                row.away_is_back_to_back
+            )
+
+            # --------------------------------------------------
+            # Actualizar el partido
+            # --------------------------------------------------
+
             update_query = text(
                 """
-                INSERT INTO game_features (
-                    game_id,
-                    offensive_rating_diff,
-                    defensive_rating_diff,
-                    net_rating_diff
-                )
-                VALUES (
-                    :game_id,
-                    :offensive_rating_diff,
-                    :defensive_rating_diff,
-                    :net_rating_diff
-                )
+                UPDATE game_features
+                SET
+                    offensive_rating_diff =
+                        :offensive_rating_diff,
+
+                    defensive_rating_diff =
+                        :defensive_rating_diff,
+
+                    net_rating_diff =
+                        :net_rating_diff,
+
+                    home_rest_days =
+                        :home_rest_days,
+
+                    away_rest_days =
+                        :away_rest_days,
+
+                    rest_days_diff =
+                        :rest_days_diff,
+
+                    home_is_back_to_back =
+                        :home_is_back_to_back,
+
+                    away_is_back_to_back =
+                        :away_is_back_to_back
+
+                WHERE game_id = :game_id;
                 """
             )
 
-            session.execute(
+            result = session.execute(
                 update_query,
                 {
-                    "game_id": row.game_id,
-                    "offensive_rating_diff": offensive_rating_diff,
-                    "defensive_rating_diff": defensive_rating_diff,
-                    "net_rating_diff": net_rating_diff,
+                    "offensive_rating_diff":
+                        offensive_rating_diff,
+
+                    "defensive_rating_diff":
+                        defensive_rating_diff,
+
+                    "net_rating_diff":
+                        net_rating_diff,
+
+                    "home_rest_days":
+                        home_rest_days,
+
+                    "away_rest_days":
+                        away_rest_days,
+
+                    "rest_days_diff":
+                        rest_days_diff,
+
+                    "home_is_back_to_back":
+                        home_is_back_to_back,
+
+                    "away_is_back_to_back":
+                        away_is_back_to_back,
+
+                    "game_id":
+                        row.game_id,
                 },
             )
 
-            inserted += 1
+            if result.rowcount == 1:
+                updated += 1
 
         session.commit()
 
         print(
-            f"Características calculadas correctamente: {inserted}"
+            f"Características actualizadas correctamente: "
+            f"{updated}"
         )
+
         print(
-            f"Partidos omitidos por falta de datos históricos: {skipped}"
+            f"Partidos omitidos por falta de datos históricos: "
+            f"{skipped}"
         )
 
     except Exception:
